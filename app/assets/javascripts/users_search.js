@@ -26,17 +26,17 @@
         }.bind(this)
       });
       // console.log(results);
-      this.renderResults(found);
+      // this.renderResults(found);
     }.bind(this));
   };
 
   $.UsersSearch.prototype.renderResults = function(data){
-    console.log(this.$ul);
     this.$ul.empty();
-    $.each(data, function(idx, el)  {
-      var html = "<li>" + idx + " : " + el.val + "</li>";
-      $('users').append(html);
-    });
+    data.forEach(function (el){
+      var $li = $('<li>');
+      $li.text(el.username);
+      this.$el.find('.users').append($li);
+    }.bind(this));
   };
 
   $.fn.usersSearch = function () {
