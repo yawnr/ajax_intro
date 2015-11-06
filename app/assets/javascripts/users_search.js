@@ -21,12 +21,8 @@
         },
         success: function (data) {
           this.renderResults(data);
-          // var html = "<li>" + data.val + "</li>";
-          // $('users').append(html);
         }.bind(this)
       });
-      // console.log(results);
-      // this.renderResults(found);
     }.bind(this));
   };
 
@@ -35,7 +31,13 @@
     data.forEach(function (el){
       var $li = $('<li>');
       $li.text(el.username);
+      var $follow_button = $('<button class="follow-toggle">');
+      $li.append($follow_button);
       this.$el.find('.users').append($li);
+      $follow_button.followToggle({
+        user_id : el.id,
+        follow_state : el.follow_state
+      });
     }.bind(this));
   };
 

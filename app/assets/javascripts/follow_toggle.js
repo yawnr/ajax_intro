@@ -1,8 +1,8 @@
 (function(){
-  $.FollowToggle = function(el) {
+  $.FollowToggle = function(el, options) {
     this.$el = $(el);
-    this.$userId = this.$el.data("user-id");
-    this.$followState = this.$el.data("follow-state");
+    this.$userId = options.user_id || this.$el.data("user-id");
+    this.$followState = options.follow_state || this.$el.data("follow-state");
     this.render.call(this);
     this.handleClick.call(this);
   };
@@ -17,9 +17,9 @@
     }
   };
 
-  $.fn.followToggle = function () {
+  $.fn.followToggle = function (options) {
     return this.each(function() {
-      new $.FollowToggle(this);
+      new $.FollowToggle(this, options);
     });
   };
 
@@ -57,7 +57,7 @@
   };
 
   $(function() {
-    $("button.follow-toggle").followToggle();
+    $("button.follow-toggle").followToggle({});
   });
 
 
